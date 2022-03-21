@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="UTF-8">
+    <title>All Cars</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div th:insert="fragments/header "></div>
+<div style="margin: 10px">
+    <form class="container-fluid justify-content-start">
+        <a class="btn btn-sm btn-outline-primary" th:href="@{/employee/allEmployees}">back</a>
+    </form>
+</div>
+<div class="container h-100">
+    <div class="row h-100">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center mt-4">
+                    <h1 class="te">Add new Employee </h1>
+                </div>
+                <div class="m-sm-4">
+                    <form th:action="@{/employee/addEmployee}" th:object="${employee}" method="post">
+                        <div class="form-group">
+                            <label>Full name</label>
+                            <input class="form-control form-control-lg"
+                                   type="text"
+                                   th:field="*{fullName}" id="name"
+                                   placeholder="Enter your full name">
+                            <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input class="form-control form-control-lg"
+                                   type="text"
+                                   th:field="*{username}" id="username"
+                                   placeholder="Enter your username">
+                            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input class="form-control form-control-lg"
+                                   type="password"
+                                   th:field="*{password}" id="password"
+                                   placeholder="Enter password">
+                            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Enter your Email</label>
+                            <input class="form-control form-control-lg"
+                                   type="email"
+                                   th:field="*{email}" id="email"
+                                   placeholder="Enter your email">
+                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone number</label>
+                            <input class="form-control form-control-lg"
+                                   type="text"
+                                   th:field="*{phoneNumber}" id="phoneNumber"
+                                   placeholder="Enter your phone number">
+                            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Select role</label><br>
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" th:field="*{role}" id="role">
+                                <option value="">Choose...</option>
+                                <option th:each="value : ${T(com.edgars.carmanage.enums.Roles).values()}" th:value="${value}" th:text="${value}"></option>
+                            </select>
+                        </div>
+                        <div class="text-center mt-3">
+                            <input type="submit" class="btn btn-lg btn-dark" value="add employee">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

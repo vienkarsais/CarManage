@@ -3,23 +3,33 @@ package com.edgars.carmanage.services;
 import com.edgars.carmanage.models.Employee;
 import com.edgars.carmanage.repositories.EmployeeRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepo employeeRepo;
 
-    @Override
-    public Employee addEmployee(Employee employee) {
-        return null;
+    @Autowired
+    public EmployeeServiceImpl(EmployeeRepo employeeRepo) {
+        this.employeeRepo = employeeRepo;
     }
 
     @Override
-    public Employee updateEmployee(Employee employee) {
-        return null;
+    public Employee addEmployee(Employee employee) {
+        return employeeRepo.save(employee);
+    }
+
+    @Override
+    public Employee updateEmployee(Long id) {
+        Optional<Employee> maybeEmployee = employeeRepo.findById(id);
+        if ((maybeEmployee.isEmpty())){
+            throw new RuntimeException("Employee with id: " + id + " was not found.");
+        }
+        return maybeEmployee.get();
     }
 
     @Override

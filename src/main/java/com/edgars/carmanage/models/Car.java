@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Data
@@ -19,13 +18,14 @@ public class Car {
     private Long id;
     private String maker;
     private String model;
-    private LocalDate yearMade;
+    private Integer yearMade;
     private FuelType fuelType;
     private Gearbox gearbox;
     private Integer seats;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
+    private String imageUrl;
 
 
 

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="header">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img th:src="@{/img/exampleLogo.jpg}" alt="" width="30" height="24" class="d-inline-block align-text-top" th:href="@{/main}">
+                Company name
+            </a>
+            <div>
+                <a class="btn btn-sm btn-outline-danger" th:href="@{/logout}">Logout</a>
+            </div>
+            <form class="container-fluid justify-content-start">
+                <a class="btn btn-sm btn-outline-secondary" th:href="@{/car/allCars}">Cars</a>
+                <a class="btn btn-sm btn-outline-secondary" th:href="@{/employee/allEmployees}">Employees</a>
+                <a class="btn btn-sm btn-outline-secondary" th:href="@{/car/allCars}">Managers</a>
+            </form>
+        </div>
+    </nav>
+</header>
+
+</body>
+</html>
