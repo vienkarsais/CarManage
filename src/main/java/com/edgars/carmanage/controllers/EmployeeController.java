@@ -7,8 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -28,7 +30,10 @@ public class EmployeeController {
     }
 
     @PostMapping("/addEmployee")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee){
+    public String saveEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult result){
+        if (result.hasErrors()){
+            return "redirect:/employee/form";
+        }
         employeeServiceImpl.addEmployee(employee);
         return "redirect:/employee/allEmployees";
     }
@@ -48,6 +53,11 @@ public class EmployeeController {
     @GetMapping("/deleteEmployee")
     public String deleteEmployee(@RequestParam("id") Long id){
         employeeServiceImpl.deleteEmployee(id);
+        return "redirect:/employee/allEmployees";
+    }
+    @GetMapping("deleteAll")
+    public String deleteAllEmp(){
+        employeeServiceImpl.deleteAllEmployees();
         return "redirect:/employee/allEmployees";
     }
 

@@ -2,7 +2,6 @@ package com.edgars.carmanage.services;
 
 import com.edgars.carmanage.models.Employee;
 import com.edgars.carmanage.repositories.EmployeeRepo;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

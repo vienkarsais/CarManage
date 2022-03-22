@@ -1,6 +1,7 @@
 package com.edgars.carmanage.services;
 
 import com.edgars.carmanage.models.Car;
+import com.edgars.carmanage.models.Employee;
 
 import java.util.List;
 public interface CarService {

@@ -1,7 +1,9 @@
 package com.edgars.carmanage.services;
 
 import com.edgars.carmanage.models.Car;
+import com.edgars.carmanage.models.Employee;
 import com.edgars.carmanage.repositories.CarRepo;
+import com.edgars.carmanage.repositories.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,11 @@ import java.util.Optional;
 @Service
 public class CarServiceImpl implements CarService{
     private CarRepo carRepo;
+    private EmployeeRepo employeeRepo;
     @Autowired
-    public CarServiceImpl(CarRepo carRepo) {
+    public CarServiceImpl(CarRepo carRepo, EmployeeRepo employeeRepo) {
         this.carRepo = carRepo;
+        this.employeeRepo = employeeRepo;
     }
 
     @Override
@@ -46,4 +50,5 @@ public class CarServiceImpl implements CarService{
     public void deleteAllCars() {
         carRepo.deleteAll();
     }
+
 }
