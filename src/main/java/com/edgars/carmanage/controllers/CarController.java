@@ -41,14 +41,12 @@ public class CarController {
 
     @PostMapping("/addCar")
     public String saveCar(@ModelAttribute("car") Car car) {
-
-
         carServiceImpl.addCar(car);
         return "redirect:/car/allCars";
     }
-    @PutMapping("/updateForm")
-    public String employeeUpdateForm(@RequestParam("id")Long id, Model model){
-        Car car = carServiceImpl.updateCar(id);
+    @GetMapping("/updateForm")
+    public String carUpdateForm(@RequestParam("id")Long id, Model model){
+        Car car = carServiceImpl.findById(id);
         model.addAttribute("car", car);
         return "/addCar";
     }

@@ -26,7 +26,7 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
-    public Car updateCar(Long id) {
+    public Car findById(Long id) {
         Optional<Car> maybeCar = carRepo.findById(id);
 
         if (maybeCar.isEmpty()) {

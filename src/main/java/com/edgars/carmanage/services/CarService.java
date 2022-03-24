@@ -6,7 +6,7 @@ import com.edgars.carmanage.models.Employee;
 import java.util.List;
 public interface CarService {
     Car addCar(Car car);
-    Car updateCar(Long id);
+    Car findById(Long id);
     List<Car> showAllCars();
     void deleteCar(Long id);
     void deleteAllCars();

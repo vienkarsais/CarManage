@@ -1,10 +1,11 @@
 package com.edgars.carmanage.controllers;
 
+import com.edgars.carmanage.enums.Roles;
 import com.edgars.carmanage.models.Employee;
 import com.edgars.carmanage.services.EmployeeService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,7 +40,7 @@ public class EmployeeController {
     }
     @GetMapping("/updateForm")
     public String employeeUpdateForm(@RequestParam("id")Long id, Model model){
-        Employee employee = employeeServiceImpl.updateEmployee(id);
+        Employee employee = employeeServiceImpl.findEmpById(id);
         model.addAttribute("employee", employee);
         return "/addEmployee";
     }
@@ -59,6 +60,13 @@ public class EmployeeController {
     public String deleteAllEmp(){
         employeeServiceImpl.deleteAllEmployees();
         return "redirect:/employee/allEmployees";
+    }
+
+    @GetMapping("/managerList")
+    public String allManagers(Model model){
+        List<Employee> managerList = employeeServiceImpl.sortByRoles(Roles.MANAGER);
+        model.addAttribute("managerList", managerList);
+        return "/managerList";
     }
 
 

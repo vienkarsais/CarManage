@@ -9,8 +9,8 @@
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img th:src="@{/img/exampleLogo.jpg}" alt="" width="30" height="24" class="d-inline-block align-text-top" th:href="@{/main}">
-                Company name
+                <img th:src="@{/img/logo.png}" alt="" width="100" height="100" class="d-inline-block align-text-top" th:href="@{/main}">
+                <a class="h1" th:href="@{/main}">Car manager</a>
             </a>
             <div>
                 <a class="btn btn-sm btn-outline-danger" th:href="@{/logout}">Logout</a>
@@ -18,7 +18,7 @@
             <form class="container-fluid justify-content-start">
                 <a class="btn btn-sm btn-outline-secondary" th:href="@{/car/allCars}">Cars</a>
                 <a class="btn btn-sm btn-outline-secondary" th:href="@{/employee/allEmployees}">Employees</a>
-                <a class="btn btn-sm btn-outline-secondary" th:href="@{/car/allCars}">Managers</a>
+                <a class="btn btn-sm btn-outline-secondary" th:href="@{/employee/managerList}">Managers</a>
             </form>
         </div>
     </nav>

@@ -1,5 +1,6 @@
 package com.edgars.carmanage.services;
 
+import com.edgars.carmanage.enums.Roles;
 import com.edgars.carmanage.models.Employee;
 import com.edgars.carmanage.repositories.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee updateEmployee(Long id) {
+    public Employee findEmpById(Long id) {
         Optional<Employee> maybeEmployee = employeeRepo.findById(id);
         if ((maybeEmployee.isEmpty())){
             throw new RuntimeException("Employee with id: " + id + " was not found.");
@@ -44,5 +45,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteAllEmployees() {
         employeeRepo.deleteAll();
+    }
+
+    @Override
+    public List<Employee> sortByRoles(Roles roles) {
+        List<Employee> employeeList = employeeRepo.getEmployeesByRole(roles);
+        return employeeList;
     }
 }
