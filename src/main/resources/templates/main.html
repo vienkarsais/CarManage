@@ -6,7 +6,61 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
 </head>
 <body>
-<div th:insert="fragments/header "></div>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/main}">
+                <div class="row">
+                    <div class="col">
+                        <img th:src="@{/img/logo.png}" alt="" width="120" height="120" class="d-inline-block align-text-top" th:href="@{/main}">
+                    </div>
+                    <div class="h1 col align-self-center" th:href="@{/main}">
+                        Car manager
+                    </div>
+                </div>
+            </a>
+            <div>
+                <a class="btn btn-sm btn-outline-danger" th:href="@{/logout}">Logout</a>
+            </div>
+        </div>
+    </nav>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1" style="margin: 15px">
+            <form class="container-fluid justify-content-start">
+                <a class="btn btn-lg btn-dark" th:href="@{/car/allCars}" style="margin: 5px">Cars</a><br>
+                <a class="btn btn-lg btn-dark" th:href="@{/employee/allEmployees}" style="margin: 5px">Employees</a><br>
+                <a class="btn btn-lg btn-dark" th:href="@{/employee/managerList}" style="margin: 5px">Managers</a><br>
+            </form>
+        </div>
+        <div class="col-md-9 offset-md-1">
+            <br>
+            <h2>About</h2><br>
+            <div>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            </div><br>
+            <h2>Rules</h2><br>
+            <div>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li>Curabitur ullamcorper ligula rhoncus felis commodo sodales.</li>
+                    <li>Duis euismod sem ut molestie feugiat.</li>
+                    <li>Donec mattis diam in fermentum cursus.</li>
+                    <li>In ornare dui id nisl suscipit, quis finibus nisl finibus.</li>
+                    <li>Curabitur ac mauris vestibulum, lacinia metus at, dapibus leo.</li>
+                    <li>In tincidunt dui sit amet eros commodo rhoncus.</li>
+                    <li>Morbi vitae sapien consequat, finibus eros at, mattis ipsum.</li>
+                    <li>Vestibulum vitae ipsum ultricies, efficitur tellus sed, tincidunt tortor.</li>
+                    <li>In vitae libero aliquam, pharetra nulla et, lobortis enim.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>

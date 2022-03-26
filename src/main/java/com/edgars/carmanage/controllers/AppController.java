@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @Slf4j
 public class AppController {
-    private EmployeeService employeeServiceImpl;
-    private CarService carServiceImpl;
+    private final EmployeeService employeeServiceImpl;
+    private final CarService carServiceImpl;
     @Autowired
     public AppController(EmployeeService employeeServiceImpl, CarService carServiceImpl) {
         this.employeeServiceImpl = employeeServiceImpl;
@@ -21,7 +21,7 @@ public class AppController {
 
     @GetMapping("/")
     public String welcomeScreen(){
-        return "redirect:/employee/allEmployees";
+        return "main";
     }
 
     @GetMapping("/main")

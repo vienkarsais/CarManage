@@ -8,13 +8,13 @@
 <div th:insert="fragments/header "></div>
 <div style="margin: 10px">
     <form class="container-fluid justify-content-start">
-        <a class="btn btn-sm btn-outline-primary" th:href="@{/car/carForm}">add car</a>
-        <a class="btn btn-sm btn-outline-danger" th:href="@{/car/deleteAll}">remove all cars</a>
+        <a class="btn btn-sm btn-primary" th:href="@{/car/carForm}">add car</a>
+        <a class="btn btn-sm btn-danger" th:href="@{/car/deleteAll}">remove all cars</a>
     </form>
 </div>
 <div class="col-lg-8">
-    <div class="container">
-        <table class="table table-bordered border-dark">
+    <div class="container row justify-content-center">
+        <table class="table table-bordered table-hover border-dark">
             <thead>
             <tr>
                 <th scope="col"> Manufacturer </th>
@@ -38,7 +38,7 @@
                 <td><span th:text="${car.fuelType}"> fuelType </span></td>
                 <td><span th:text="${car.gearbox}"> gearbox </span></td>
                 <td><span th:text="${car.seats}"> seats </span></td>
-                <td><span th:text="${car.employee}"> employee assigned </span></td>
+                <td><span th:text="${car.employee.fullName}"> employee assigned </span></td>
                 <td><span th:text="${car.imageUrl}"> imageUrl </span></td>
                 <td><span>
                     <div class="btn-group">

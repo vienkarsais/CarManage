@@ -4,7 +4,7 @@ public enum Gearbox {
     MANUAL("manual"),
     AUTOMATIC("automatic");
 
-    private String gearbox;
+    private final String gearbox;
 
     Gearbox(String gearbox) {
         this.gearbox = gearbox;

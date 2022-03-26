@@ -16,8 +16,8 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/car")
 public class CarController {
-    private CarService carServiceImpl;
-    private EmployeeService employeeServiceImpl;
+    private final CarService carServiceImpl;
+    private final EmployeeService employeeServiceImpl;
     @Autowired
     public CarController(CarService carServiceImpl, EmployeeService employeeServiceImpl) {
         this.carServiceImpl = carServiceImpl;
@@ -41,12 +41,15 @@ public class CarController {
 
     @PostMapping("/addCar")
     public String saveCar(@ModelAttribute("car") Car car) {
+        log.info(car.toString());
         carServiceImpl.addCar(car);
         return "redirect:/car/allCars";
     }
     @GetMapping("/updateForm")
     public String carUpdateForm(@RequestParam("id")Long id, Model model){
         Car car = carServiceImpl.findById(id);
+        List<Employee> employeeList = employeeServiceImpl.allEmployees();
+        model.addAttribute("employeeList", employeeList);
         model.addAttribute("car", car);
         return "/addCar";
     }

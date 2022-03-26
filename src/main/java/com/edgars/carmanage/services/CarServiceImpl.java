@@ -12,8 +12,8 @@ import java.util.Optional;
 
 @Service
 public class CarServiceImpl implements CarService{
-    private CarRepo carRepo;
-    private EmployeeRepo employeeRepo;
+    private final CarRepo carRepo;
+    private final EmployeeRepo employeeRepo;
     @Autowired
     public CarServiceImpl(CarRepo carRepo, EmployeeRepo employeeRepo) {
         this.carRepo = carRepo;

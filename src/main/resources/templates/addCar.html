@@ -74,11 +74,7 @@
                                         <option value="0">Select employee</option>
                                         <option th:each="employee : ${employeeList}" th:value="${employee.id}" th:text="${employee.fullName}"></option>
                                     </select>
-                                    <!--<input class="form-control form-control-lg"
-                                           type="number"
-                                           th:field="*{employee}" id="employee"
-                                           placeholder="Employee">
-                                    <span th:if="${#fields.hasErrors('employee')}" th:errors="*{employee}"></span>-->
+
                                 </div>
                                 <div class="form-group">
                                     <label>Enter image Url</label>

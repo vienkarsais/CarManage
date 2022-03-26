@@ -8,7 +8,7 @@ public enum FuelType {
     GAS("gas"),
     ELECTRIC("electric");
 
-    private String fuelType;
+    private final String fuelType;
 
     FuelType(String fuelType) {
         this.fuelType = fuelType;

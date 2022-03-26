@@ -7,8 +7,15 @@
 </head>
 <body>
 <div th:insert="fragments/header "></div>
-<div class="container" style="margin: 15px">
-    <table class="table table-bordered border-dark">
+<div style="margin: 10px">
+    <form class="container-fluid justify-content-start">
+        <a class="btn btn-sm btn-primary" th:href="@{/employee/form}">add Employee</a>
+        <a class="btn btn-sm btn-danger" th:href="@{/employee/deleteAll}">remove all Employees</a>
+    </form>
+</div>
+
+<div class="container "  style="margin: 15px">
+    <table class="table table-bordered table-hover border-dark">
         <thead>
         <tr>
             <th scope="col"> Id </th>

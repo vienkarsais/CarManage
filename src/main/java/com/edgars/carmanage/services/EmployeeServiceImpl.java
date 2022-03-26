@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private EmployeeRepo employeeRepo;
+    private final EmployeeRepo employeeRepo;
 
     @Autowired
     public EmployeeServiceImpl(EmployeeRepo employeeRepo) {
@@ -20,6 +20,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee addEmployee(Employee employee) {
+        if(employee.getRole() == null){
+            employee.setRole(Roles.EMPLOYEE);
+        }
         return employeeRepo.save(employee);
     }
 

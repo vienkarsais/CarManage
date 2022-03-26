@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/employee")
 public class EmployeeController {
-    private EmployeeService employeeServiceImpl;
+    private final EmployeeService employeeServiceImpl;
 
     @Autowired
     public EmployeeController(EmployeeService employeeServiceImpl) {
@@ -33,6 +33,7 @@ public class EmployeeController {
     @PostMapping("/addEmployee")
     public String saveEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult result){
         if (result.hasErrors()){
+            log.error(String.valueOf(result));
             return "redirect:/employee/form";
         }
         employeeServiceImpl.addEmployee(employee);
@@ -41,6 +42,7 @@ public class EmployeeController {
     @GetMapping("/updateForm")
     public String employeeUpdateForm(@RequestParam("id")Long id, Model model){
         Employee employee = employeeServiceImpl.findEmpById(id);
+        
         model.addAttribute("employee", employee);
         return "/addEmployee";
     }
