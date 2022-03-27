@@ -7,9 +7,7 @@
 <body>
 <div th:insert="fragments/header "></div>
 <div style="margin: 10px">
-    <form class="container-fluid justify-content-start">
-        <a class="btn btn-sm btn-outline-primary" th:href="@{/employee/allEmployees}">back</a>
-    </form>
+    <a class="btn btn-sm btn-outline-primary" th:href="@{/employee/allEmployees}">back</a>
 </div>
 <div class="container h-100">
     <div class="row h-100">
@@ -19,21 +17,26 @@
                     <h1 class="te">Add new Employee </h1>
                 </div>
                 <div class="m-sm-4">
-                    <form th:action="@{/employee/addEmployee}" th:object="${employee}" method="post">
+                    <form th:action="@{/employee/addEmployee}" th:object="${employee}" method="post" class="needs-validation" novalidate>
+                        <input type="hidden" class="form-control" id="id" th:field="*{id}">
                         <div class="form-group">
                             <label>Full name</label>
                             <input class="form-control form-control-lg"
                                    type="text"
                                    th:field="*{fullName}" id="name"
-                                   placeholder="Enter your full name">
-                            <span th:if="${#fields.hasErrors('fullName')}" th:errorclass="error" th:error="*{fullName}"></span>
+                                   placeholder="Enter your full name" required>
+                            <div class="invalid-feedback">Enter your full name</div>
+                            <div class="valid-feedback">Looks good</div>
+                            <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></span>
                         </div>
                         <div class="form-group">
                             <label>Username</label>
                             <input class="form-control form-control-lg"
                                    type="text"
                                    th:field="*{username}" id="username"
-                                   placeholder="Enter your username">
+                                   placeholder="Enter your username" required>
+                            <div class="invalid-feedback">invalid username</div>
+                            <div class="valid-feedback">Looks good</div>
                             <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
                         </div>
                         <div class="form-group">
@@ -41,7 +44,9 @@
                             <input class="form-control form-control-lg"
                                    type="password"
                                    th:field="*{password}" id="password"
-                                   placeholder="Enter password">
+                                   placeholder="Enter password" required>
+                            <div class="invalid-feedback">Enter password minimum 6 characters</div>
+                            <div class="valid-feedback">Looks good</div>
                             <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                         </div>
                         <div class="form-group">
@@ -49,7 +54,9 @@
                             <input class="form-control form-control-lg"
                                    type="email"
                                    th:field="*{email}" id="email"
-                                   placeholder="Enter your email">
+                                   placeholder="Enter your email" required>
+                            <div class="invalid-feedback">Enter valid email</div>
+                            <div class="valid-feedback">Looks good</div>
                             <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                         </div>
                         <div class="form-group">
@@ -57,12 +64,15 @@
                             <input class="form-control form-control-lg"
                                    type="text"
                                    th:field="*{phoneNumber}" id="phoneNumber"
-                                   placeholder="Enter your phone number">
+                                   placeholder="Enter your phone number" required>
+                            <div class="invalid-feedback">Enter your phone number without country code</div>
+                            <div class="valid-feedback">Looks good</div>
                             <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
                         </div>
                         <div class="form-group">
                             <label for="role">Select role</label><br>
                             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" th:field="*{role}" id="role">
+                                <div class="valid-feedback">Default role: employee</div>
                                 <option value="">Choose...</option>
                                 <option th:each="value : ${T(com.edgars.carmanage.enums.Roles).values()}" th:value="${value}" th:text="${value}"></option>
                             </select>
@@ -76,7 +86,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

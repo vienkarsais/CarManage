@@ -5,7 +5,6 @@ import com.edgars.carmanage.models.Employee;
 import com.edgars.carmanage.services.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +18,6 @@ import java.util.List;
 @RequestMapping("/employee")
 public class EmployeeController {
     private final EmployeeService employeeServiceImpl;
-
     @Autowired
     public EmployeeController(EmployeeService employeeServiceImpl) {
         this.employeeServiceImpl = employeeServiceImpl;
@@ -31,7 +29,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/addEmployee")
-    public String saveEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult result){
+    public String saveEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult result, Model model){
         if (result.hasErrors()){
             log.error(String.valueOf(result));
             return "redirect:/employee/form";
@@ -42,7 +40,6 @@ public class EmployeeController {
     @GetMapping("/updateForm")
     public String employeeUpdateForm(@RequestParam("id")Long id, Model model){
         Employee employee = employeeServiceImpl.findEmpById(id);
-        
         model.addAttribute("employee", employee);
         return "/addEmployee";
     }

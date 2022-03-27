@@ -36,5 +36,4 @@ public class Employee {
     private Roles role;
     @OneToMany(mappedBy = "employee")
     private List<Car> cars;
-
 }

@@ -9,7 +9,8 @@
 <div style="margin: 10px">
     <form class="container-fluid justify-content-start">
         <a class="btn btn-sm btn-primary" th:href="@{/car/carForm}">add car</a>
-        <a class="btn btn-sm btn-danger" th:href="@{/car/deleteAll}">remove all cars</a>
+        <a class="btn btn-sm btn-danger" th:href="@{/car/deleteAll}"
+           onclick="if ( !(confirm('Are you sure you want to delete all car?'))) return false">remove all cars</a>
     </form>
 </div>
 <div class="col-lg-8">
@@ -39,7 +40,11 @@
                 <td><span th:text="${car.gearbox}"> gearbox </span></td>
                 <td><span th:text="${car.seats}"> seats </span></td>
                 <td><span th:text="${car.employee.fullName}"> employee assigned </span></td>
-                <td><span th:text="${car.imageUrl}"> imageUrl </span></td>
+                <!--just text-->
+                <!-- <td><span th:text="${car.imageUrl}"> imageUrl </span></td>-->
+                <!--button with url-->
+                <!--<td><a class="btn btn-outline-dark" th:href="${car.imageUrl}" th:text="${car.imageUrl}"> imageUrl </a></td>-->
+                <td><img  th:src="${car.imageUrl}" width="100" height="100"></td>
                 <td><span>
                     <div class="btn-group">
                         <a th:href="@{/car/updateForm(id=${car.id})}" class="btn btn-warning">

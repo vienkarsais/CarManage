@@ -7,9 +7,7 @@
 <body>
 <div th:insert="fragments/header "></div>
 <div style="margin: 10px">
-    <form class="container-fluid justify-content-start">
         <a class="btn btn-sm btn-outline-primary" th:href="@{/car/allCars}">back</a>
-    </form>
 </div>
 <div class="container h-100">
     <div class="row h-100">
@@ -21,41 +19,52 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="m-sm-4">
-                            <form th:action="@{/car/addCar}" th:object="${car}" method="post">
+                            <form th:action="@{/car/addCar}" th:object="${car}" method="post" class="needs-validation" novalidate>
+                                <input type="hidden" class="form-control" id="id" th:field="*{id}">
                                 <div class="form-group">
                                     <label>Enter Manufacturer</label>
                                     <input class="form-control form-control-lg"
                                            type="text"
                                            th:field="*{maker}" id="maker"
-                                           placeholder="Enter manufacturer">
-                                    <span th:if="${#fields.hasErrors('maker')}" th:errors="*{maker}"></span>
+                                           placeholder="Enter manufacturer" required>
+                                    <div class="invalid-feedback">Enter cars manufacturer</div>
+                                    <div class="valid-feedback">Looks good</div>
+                                    <span th:if="${#fields.hasErrors('maker')}" th:errors="*{maker}" ></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Enter model</label>
                                     <input class="form-control form-control-lg"
                                            type="text"
                                            th:field="*{model}" id="model"
-                                           placeholder="Enter your model">
-                                    <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>
+                                           placeholder="Enter your model" required>
+                                    <div class="invalid-feedback">Enter cars model</div>
+                                    <div class="valid-feedback">Looks good</div>
+                                    <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}" ></span>
+
                                 </div>
                                 <div class="form-group">
                                     <label>Year Made</label>
                                     <input class="form-control form-control-lg"
                                            type="number"
                                            th:field="*{yearMade}" id="yearMade"
-                                           placeholder="Year Made">
-                                    <span th:if="${#fields.hasErrors('yearMade')}" th:errors="*{yearMade}"></span>
+                                           placeholder="Year Made" required>
+                                    <div class="invalid-feedback">Enter cars release year</div>
+                                    <div class="valid-feedback">Looks good</div>
+                                    <span th:if="${#fields.hasErrors('yearMade')}" th:errors="*{yearMade}" ></span>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="fuelType">Select fuel type</label><br>
-                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" th:field="*{fuelType}" id="fuelType">
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" th:field="*{fuelType}" id="fuelType" required>
+                                        <div class="valid-feedback">Looks good</div>
                                         <option value="">Choose...</option>
                                         <option th:each="value : ${T(com.edgars.carmanage.enums.FuelType).values()}" th:value="${value}" th:text="${value}"></option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="gearbox">Select gearbox</label><br>
-                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" th:field="*{gearbox}" id="gearbox">
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" th:field="*{gearbox}" id="gearbox" required>
+                                        <div class="valid-feedback">Looks good</div>
                                         <option value="">Choose...</option>
                                         <option th:each="value : ${T(com.edgars.carmanage.enums.Gearbox).values()}" th:value="${value}" th:text="${value}"></option>
                                     </select>
@@ -65,12 +74,14 @@
                                     <input class="form-control form-control-lg"
                                            type="number"
                                            th:field="*{seats}" id="seats"
-                                           placeholder="Enter seats count">
+                                           placeholder="Enter seats count" required>
+                                    <div class="valid-feedback">Looks good</div>
                                     <span th:if="${#fields.hasErrors('seats')}" th:errors="*{seats}"></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Employee</label>
-                                    <select class="form-control form-control-lg">
+                                    <select th:field="*{employeeId}" id="employeeId" class="form-control form-control-lg" required>
+                                        <div class="valid-feedback">Looks good</div>
                                         <option value="0">Select employee</option>
                                         <option th:each="employee : ${employeeList}" th:value="${employee.id}" th:text="${employee.fullName}"></option>
                                     </select>

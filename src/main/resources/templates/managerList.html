@@ -10,7 +10,8 @@
 <div style="margin: 10px">
     <form class="container-fluid justify-content-start">
         <a class="btn btn-sm btn-primary" th:href="@{/employee/form}">add Employee</a>
-        <a class="btn btn-sm btn-danger" th:href="@{/employee/deleteAll}">remove all Employees</a>
+        <a class="btn btn-sm btn-danger" th:href="@{/employee/deleteAll}"
+           onclick="if ( !(confirm('Are you sure you want to delete all employees?'))) return false">remove all Employees</a>
     </form>
 </div>
 

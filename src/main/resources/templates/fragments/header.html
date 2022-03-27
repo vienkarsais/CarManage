@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
 <header th:fragment="header">
+    <script type="text/javascript" th:src="@{/js/validation.js}"></script>
+    <script type="text/javascript">
+        window.onload = bindValidation;
+    </script>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" th:href="@{/main}">

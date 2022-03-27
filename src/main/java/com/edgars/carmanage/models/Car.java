@@ -16,18 +16,27 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "EMPLOYEE_ID")
+    private Employee employee;
+    @Transient
+    private Long employeeId;
+
     private String maker;
     private String model;
     private Integer yearMade;
     private FuelType fuelType;
     private Gearbox gearbox;
     private Integer seats;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "EMPLOYEE_ID")
-    private Employee employee;
     private String imageUrl;
 
-
-
-
+    @Override
+    public String toString() {
+        return "Car{" +
+                "maker='" + maker + '\'' +
+                ", model='" + model + '\'' +
+                ", yearMade=" + yearMade +
+                '}';
+    }
 }

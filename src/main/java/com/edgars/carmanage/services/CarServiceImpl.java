@@ -1,7 +1,6 @@
 package com.edgars.carmanage.services;
 
 import com.edgars.carmanage.models.Car;
-import com.edgars.carmanage.models.Employee;
 import com.edgars.carmanage.repositories.CarRepo;
 import com.edgars.carmanage.repositories.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import java.util.Optional;
 public class CarServiceImpl implements CarService{
     private final CarRepo carRepo;
     private final EmployeeRepo employeeRepo;
+
     @Autowired
     public CarServiceImpl(CarRepo carRepo, EmployeeRepo employeeRepo) {
         this.carRepo = carRepo;
