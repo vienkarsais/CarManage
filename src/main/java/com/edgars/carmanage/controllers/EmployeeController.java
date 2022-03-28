@@ -46,7 +46,8 @@ public class EmployeeController {
 
     @GetMapping("/allEmployees")
     public String allEmployees(Model model){
-        List<Employee> employeeList = employeeServiceImpl.allEmployees();
+        List<Employee> employeeList = employeeServiceImpl.sortByRoles(Roles.EMPLOYEE);
+        employeeList.addAll(employeeServiceImpl.sortByRoles(Roles.MANAGER));
         model.addAttribute("employeesList", employeeList);
         return "/allEmployees";
     }
@@ -64,6 +65,7 @@ public class EmployeeController {
     @GetMapping("/managerList")
     public String allManagers(Model model){
         List<Employee> managerList = employeeServiceImpl.sortByRoles(Roles.MANAGER);
+        managerList.addAll(employeeServiceImpl.sortByRoles(Roles.ADMIN));
         model.addAttribute("managerList", managerList);
         return "/managerList";
     }

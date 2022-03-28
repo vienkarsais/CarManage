@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 
 public class CarServiceImplTest {
 
-    /*@Test
+@Test
     void whenAddedCarReturnsList(){
         CarRepo carRepo = mock(CarRepo.class);
         EmployeeRepo employeeRepo = mock(EmployeeRepo.class);
@@ -25,15 +25,15 @@ public class CarServiceImplTest {
         Employee employee = new Employee();
         employee.setId(1L);
         List<Car> carList = List.of(new Car(2L,
+                employee,
+           2L,
            "Volvo",
            "S80",
            2020,
                 FuelType.DIESEL,
                 Gearbox.AUTOMATIC,
                 5,
-                employee,
-                "url")
-        );
+                "url"));
         when(carRepo.findAll()).thenReturn(carList);
         List<Car> result = carService.showAllCars();
         assertNotNull(result);
@@ -57,14 +57,15 @@ public class CarServiceImplTest {
         Employee employee = new Employee();
         employee.setId(1L);
         Long carId = 2L;
-        Car car = new Car(carId,
+        Car car = new Car(2L,
+                employee,
+                2L,
                 "Volvo",
                 "S80",
                 2020,
                 FuelType.DIESEL,
                 Gearbox.AUTOMATIC,
                 5,
-                employee,
                 "url");
 
         when(carRepo.findById(carId)).thenReturn(Optional.of(car));
@@ -80,18 +81,18 @@ public class CarServiceImplTest {
         Employee employee = new Employee();
         employee.setId(1L);
         Long carId = 2L;
-        Car car = new Car(carId,
+        Car car = new Car(2L,
+                employee,
+                2L,
                 "Volvo",
                 "S80",
                 2020,
                 FuelType.DIESEL,
                 Gearbox.AUTOMATIC,
                 5,
-                employee,
                 "url");
-
         when(carRepo.findAll()).thenReturn(List.of(car));
         carService.deleteCar(carId);
         verify(carRepo).deleteById(carId);
-    }*/
+    }
 }

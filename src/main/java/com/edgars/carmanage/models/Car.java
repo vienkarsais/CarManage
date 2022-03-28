@@ -5,6 +5,7 @@ import com.edgars.carmanage.enums.Gearbox;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
@@ -33,10 +34,9 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "maker='" + maker + '\'' +
-                ", model='" + model + '\'' +
-                ", yearMade=" + yearMade +
-                '}';
+        return  "Id: " + id +
+                ", Manufacturer: " + maker +
+                ", Model: " + model +
+                ", Production year: " + yearMade;
     }
 }

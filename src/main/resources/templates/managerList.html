@@ -38,7 +38,11 @@
             <td><span th:text="${employee.email}"> email </span></td>
             <td><span th:text="${employee.phoneNumber}"> Phone Nr. </span></td>
             <td><span th:text="${employee.role}"> Role </span></td>
-            <td><span th:text="${employee.cars}"> Assigned cars </span></td>
+            <td>
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="car : ${employee.cars}" th:text="${car.toString()}" ></li>
+                </ul>
+            </td>
             <td><span>
                 <div class="btn-group">
                     <a th:href="@{/employee/updateForm(id=${employee.id})}" class="btn btn-warning">

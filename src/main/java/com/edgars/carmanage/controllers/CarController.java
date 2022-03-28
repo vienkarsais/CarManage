@@ -6,6 +6,7 @@ import com.edgars.carmanage.services.CarService;
 import com.edgars.carmanage.services.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,12 +43,14 @@ public class CarController {
 
     @PostMapping("/addCar")
     public String saveCar(@ModelAttribute("car") Car car) {
-        log.info(car.toString());
+
         if(car.getEmployeeId() != null && car.getEmployeeId() != 0){
             Employee employee = employeeServiceImpl.findEmpById(car.getEmployeeId());
             car.setEmployee(employee);
         }
+
         carServiceImpl.addCar(car);
+        log.info(car.toString());
         return "redirect:/car/allCars";
     }
     @GetMapping("/updateForm")
