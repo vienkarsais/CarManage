@@ -43,25 +43,24 @@ public class CarController {
 
     @PostMapping("/addCar")
     public String saveCar(@ModelAttribute("car") Car car) {
-
         if(car.getEmployeeId() != null && car.getEmployeeId() != 0){
             Employee employee = employeeServiceImpl.findEmpById(car.getEmployeeId());
             car.setEmployee(employee);
         }
-
         carServiceImpl.addCar(car);
         log.info(car.toString());
         return "redirect:/car/allCars";
     }
+
     @GetMapping("/updateForm")
     public String carUpdateForm(@RequestParam("id")Long id, Model model){
         Car car = carServiceImpl.findById(id);
-
         List<Employee> employeeList = employeeServiceImpl.allEmployees();
         model.addAttribute("employeeList", employeeList);
         model.addAttribute("car", car);
         return "/addCar";
     }
+
     @GetMapping("/deleteCar")
     public String deleteCar(@RequestParam("id") Long id){
         carServiceImpl.deleteCar(id);
@@ -73,8 +72,4 @@ public class CarController {
         carServiceImpl.deleteAllCars();
         return "redirect:/car/allCars";
     }
-
-
-
-
 }
