@@ -27,17 +27,12 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
                 httpBasic().
                 and().formLogin().and().logout()
                 .and()
-                .authorizeRequests().antMatchers("/car/**").authenticated()
+                .authorizeRequests().antMatchers("/car/**", "/employee/allEmployees").authenticated()
                 .and()
                 .authorizeRequests().antMatchers("/employee/managerList")
-                .hasAuthority(Roles.ADMIN.getKey())
+                .hasAnyAuthority(Roles.ADMIN.getKey(),Roles.MANAGER.getKey())
                 .and()
-                //.authorizeRequests().antMatchers("/").hasAnyAuthority(Authorities.SHOW_MAIN_PAGE.getKey(), UserRoles.ADMIN.getAuthority()).and().
-                //authorizeRequests().antMatchers("/rest/showAnimals").authenticated().
-                //and().
-                //authorizeRequests().antMatchers(HttpMethod.POST, "/postAnimal").authenticated().
-                //and().authorizeRequests().antMatchers(HttpMethod.POST, "registerUser").not().authenticated()
-                //.and().
+
                 .authorizeRequests().antMatchers("**").permitAll().
                 and().
                 csrf().disable();
