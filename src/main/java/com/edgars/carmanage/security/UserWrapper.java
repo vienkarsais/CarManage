@@ -1,6 +1,5 @@
 package com.edgars.carmanage.security;
 
-import com.edgars.carmanage.enums.Authorities;
 import com.edgars.carmanage.models.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,17 +13,14 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserWrapper implements UserDetails {
-
     private Employee employee;
-
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         ArrayList<EmployeeAuthority> employeeAuthorities = new ArrayList<>();
         EmployeeAuthority employeeAuthority = new EmployeeAuthority();
-        employeeAuthority.setAuthority(Authorities.SHOW_REGISTERED_USERS.getKey());
+        employeeAuthority.setAuthority(this.employee.getRole().getKey());
+        employeeAuthority.setEmployee(this.employee);
         employeeAuthorities.add(employeeAuthority);
         return employeeAuthorities;
     }

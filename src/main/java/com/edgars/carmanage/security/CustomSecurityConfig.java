@@ -1,5 +1,6 @@
 package com.edgars.carmanage.security;
 
+import com.edgars.carmanage.enums.Roles;
 import com.edgars.carmanage.repositories.EmployeeRepo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,9 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests().antMatchers("/car/**").authenticated()
                 .and()
+                .authorizeRequests().antMatchers("/employee/managerList")
+                .hasAuthority(Roles.ADMIN.getKey())
+                .and()
                 //.authorizeRequests().antMatchers("/").hasAnyAuthority(Authorities.SHOW_MAIN_PAGE.getKey(), UserRoles.ADMIN.getAuthority()).and().
                 //authorizeRequests().antMatchers("/rest/showAnimals").authenticated().
                 //and().
@@ -38,15 +42,6 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
                 and().
                 csrf().disable();
     }
-    /*@Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.inMemoryAuthentication()
-                .withUser("admin").password(encoder.encode("123")).roles(UserRoles.ADMIN.getKey())
-                .and()
-                .withUser("user").password(encoder.encode("123")).roles(UserRoles.USER.getKey())
-                .and()
-                .withUser("user2").password(encoder.encode("123")).roles(UserRoles.USER.getKey()).authorities(Authorities.SHOW_MAIN_PAGE.getKey());
-    }*/
 
     @Override
     public UserDetailsService userDetailsServiceBean() throws Exception {

@@ -1,15 +1,11 @@
 package com.edgars.carmanage.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-
 public enum Roles {
     EMPLOYEE("EMPLOYEE"),
     MANAGER("MANAGER"),
     ADMIN("ADMIN");
 
-    private static String prefix = "ROLE_";
+
     private String key;
 
     Roles(String key) {
@@ -21,7 +17,7 @@ public enum Roles {
     }
 
     public String getAuthority(){
-        return prefix+getKey();
+        return getKey();
     }
 
 
