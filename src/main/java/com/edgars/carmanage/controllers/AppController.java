@@ -21,10 +21,6 @@ public class AppController {
         this.carServiceImpl = carServiceImpl;
     }
 
-    @GetMapping("/")
-    public String welcomeScreen(){
-        return "main";
-    }
 
     @GetMapping("/main")
     public String mainPage(){

@@ -1,7 +1,6 @@
 package com.edgars.carmanage.security;
 
 import com.edgars.carmanage.enums.Roles;
-import com.edgars.carmanage.repositories.EmployeeRepo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +8,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -17,25 +15,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @AllArgsConstructor
 public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private EmployeeRepo employeeRepo;
     private UserDetailServiceImpl userDetailService;
-    private PasswordEncoder encoder;
 
     @Override
     protected void configure (HttpSecurity security) throws Exception{
-        security.
-                httpBasic().
-                and().formLogin().and().logout()
-                .and()
-                .authorizeRequests().antMatchers("/car/**", "/employee/allEmployees").authenticated()
-                .and()
-                .authorizeRequests().antMatchers("/employee/managerList")
-                .hasAnyAuthority(Roles.ADMIN.getKey(),Roles.MANAGER.getKey())
-                .and()
-
-                .authorizeRequests().antMatchers("**").permitAll().
-                and().
-                csrf().disable();
+        security.httpBasic()
+            .and().formLogin().defaultSuccessUrl("/main")
+            .and().authorizeRequests()
+                .antMatchers("/car/**", "/main/**", "/employee/allEmployees").authenticated()
+                .antMatchers("/employee/**").hasAnyAuthority(Roles.ADMIN.getKey(), Roles.MANAGER.getKey())
+                .antMatchers("/login", "/styles/**", "/error").permitAll()
+            .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login")
+            .and().csrf().disable();
     }
 
     @Override
